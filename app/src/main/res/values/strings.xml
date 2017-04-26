@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Pokemon GO Clone</string>
+
+    <!-- Strings da tela de início (splash) -->
+    <string name="disclaimer">Adaptação do jogo original - INF311</string>
+
+    <!-- Strings das telas de login e cadastro -->
+    <string name="texto_nome">Nome:</string>
+    <string name="texto_usuario">Usuário:</string>
+    <string name="texto_senha">Senha:</string>
+    <string name="texto_confirmacao_senha">Confirmação da senha:</string>
+    <string name="texto_genero">Sexo:</string>
+    <string name="texto_feminino">Feminino</string>
+    <string name="texto_masculino">Masculino</string>
+    <string name="texto_login">Login</string>
+    <string name="texto_cadastrar">Cadastrar</string>
+
+    <!-- String da tela de mapa -->
+    <string name="title_activity_maps">Map</string>
+
+    <!-- String da tela de perfil -->
+    <string name="texto_inicio_aventura">Início da aventura:</string>
+    <string name="texto_num_capturas">Número de capturas:</string>
+    <string name="texto_logout">Logout</string>
+</resources>
