@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             // Não prosseguir com o login e focar nos campos inválidos
             focusView.requestFocus();
         } else {
-            
+
         }
     }
 
