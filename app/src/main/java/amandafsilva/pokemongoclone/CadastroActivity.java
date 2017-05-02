@@ -130,9 +130,9 @@ public class CadastroActivity extends AppCompatActivity {
             valores.put("nome", nome);
             valores.put("sexo", genero);
             if(genero.equals("Feminino"))
-                valores.put("foto", R.drawable.female_profile);
+                valores.put("foto", "R.drawable.female_profile");
             else
-                valores.put("foto", R.drawable.male_profile);
+                valores.put("foto", "R.drawable.male_profile");
             valores.put("dtCadastro", strData);
             valores.put("temSessao", "nao");
 

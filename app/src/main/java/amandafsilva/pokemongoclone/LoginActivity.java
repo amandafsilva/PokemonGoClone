@@ -62,7 +62,8 @@ public class LoginActivity extends AppCompatActivity {
             focusView.requestFocus();
         } else {
             // Checa se usuário existe no banco de dados e faz validação dos dados
-            Cursor c = bd.buscar("usuario", new String[]{"login", "senha"}, "login = '" + username + "'", "");
+            Cursor c = bd.buscar("usuario", new String[]{"login", "senha", "nome", "sexo", "foto",
+                                                        "dtCadastro", "temSessao"}, "login = '" + username + "'", "");
 
             if (c.getCount() == 0) {
                 // Usuário não existe
@@ -97,4 +98,9 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        bd.fechar();
+    }
 }

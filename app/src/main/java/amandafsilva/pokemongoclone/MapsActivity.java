@@ -39,8 +39,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         switch (item.getItemId()) {
                             case R.id.acesso_perfil:
                                 Intent intent = new Intent(getApplicationContext(), PerfilActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                                 startActivity(intent);
+                                finish();
                             case R.id.acesso_maps:
                                 // do something here
                             case R.id.acesso_pokedex:
@@ -56,7 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap map) {
         LatLng sydney = new LatLng(-33.867, 151.206);
 
-        map.setMyLocationEnabled(true);
+        //map.setMyLocationEnabled(true);
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
 
         map.addMarker(new MarkerOptions()

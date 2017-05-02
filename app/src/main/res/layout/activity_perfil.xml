@@ -27,7 +27,7 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_FotoPerfil"
         android:layout_width="180dp"
         android:layout_height="220dp"
         app:srcCompat="@drawable/female_grande"
@@ -39,7 +39,7 @@
         android:id="@+id/textView_InicioAventura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/imageView_FotoPerfil"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="17dp"
@@ -52,8 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_InicioAventura"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="TextView" />
+        android:layout_centerVertical="true" />
 
     <TextView
         android:id="@+id/textView_NumCapturas"
@@ -70,24 +69,22 @@
         android:id="@+id/textView_QtdePokemon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView_DataInicio"
+        android:textAlignment="center"
         android:layout_below="@+id/textView_NumCapturas"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="TextView" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/button_Logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/button_layout"
         android:onClick="logout"
         android:text="@string/texto_logout"
         android:textColor="#CCFFFFFF"
         android:textStyle="bold"
         android:layout_below="@+id/textView_QtdePokemon"
-        android:layout_alignEnd="@+id/textView_TituloPerfil" />
+        android:layout_alignEnd="@+id/textView_InicioAventura" />
 
 </RelativeLayout>
