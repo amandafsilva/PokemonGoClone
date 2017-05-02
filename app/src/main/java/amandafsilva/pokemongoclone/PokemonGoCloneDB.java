@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 /**
  * Created by TULIO on 4/27/2017.
@@ -258,22 +259,28 @@ public final class PokemonGoCloneDB {
             for(int i = 0; i < SCRIPT_DATABASE_CREATE.length; i++) {
                 db.execSQL(SCRIPT_DATABASE_CREATE[i]);
             }
+            Log.i("BANCO_DADOS", "Criou tabelas do banco e as populou.");
         }
+
         c.close();
+        Log.i("BANCO_DADOS", "Abriu conexão com o banco.");
     }
 
     public long inserir(String tabela, ContentValues valores) {
         long id = db.insert(tabela, null, valores);
+        Log.i("BANCO_DADOS", "Cadastrou registro com o id [" + id + "]");
         return id;
     }
 
     public int atualizar(String tabela, ContentValues valores, String where) {
         int count = db.update(tabela, valores, where, null);
+        Log.i("BANCO_DADOS", "Atualizou [" + count + "] registros");
         return count;
     }
 
     public int deletar(String tabela, String where) {
         int count = db.delete(tabela, where, null);
+        Log.i("BANCO_DADOS", "Deletou [" + count + "] registros");
         return count;
     }
 
@@ -283,11 +290,13 @@ public final class PokemonGoCloneDB {
             c = db.query(tabela, colunas, where, null, null, null, orderBy);
         else
             c = db.query(tabela, colunas, null, null, null, null, orderBy);
+        Log.i("BANCO_DADOS", "Realizou uma busca e retornou [" + c.getCount() + "] registros.");
         return c;
     }
 
     public void abrir(Context ctx) {
         db = ctx.openOrCreateDatabase(NOME_BANCO, Context.MODE_PRIVATE, null);
+        Log.i("BANCO_DADOS", "Abriu conexão com o banco.");
     }
 
     public static PokemonGoCloneDB getInstance(){
@@ -297,6 +306,7 @@ public final class PokemonGoCloneDB {
     public void fechar() {
         if (db != null) {
             db.close();
+            Log.i("BANCO_DADOS", "Fechou conexão com o Banco.");
         }
     }
 

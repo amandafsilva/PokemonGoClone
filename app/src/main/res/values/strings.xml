@@ -15,11 +15,13 @@
     <string name="texto_login">Login</string>
     <string name="texto_cadastrar">Cadastrar</string>
 
-    <!-- Strings dos erros da tela de Login -->
+    <!-- Strings dos erros da tela de Login e Cadastro -->
     <string name="erro_campo_obrigatório">Campo obrigatório.</string>
     <string name="erro_usuario_inexistente">Usuário não existe.</string>
     <string name="erro_senha_incorreta">Senha incorreta.</string>
     <string name="erro_senha_invalida">Senha deve ter pelo menos 6 caracteres.</string>
+    <string name="erro_senhas_iguais">Repita a senha corretamente.</string>
+    <string name="erro_usuario_existente">Nome de usuário já existe.</string>
 
     <!-- String da tela de mapa -->
     <string name="title_activity_maps">Map</string>

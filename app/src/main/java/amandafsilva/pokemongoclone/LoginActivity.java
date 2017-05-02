@@ -1,5 +1,6 @@
 package amandafsilva.pokemongoclone;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
@@ -60,6 +61,33 @@ public class LoginActivity extends AppCompatActivity {
             // Não prosseguir com o login e focar nos campos inválidos
             focusView.requestFocus();
         } else {
+            // Checa se usuário existe no banco de dados e faz validação dos dados
+            Cursor c = bd.buscar("usuario", new String[]{"login", "senha"}, "login = '" + username + "'", "");
+
+            if (c.getCount() == 0) {
+                // Usuário não existe
+                erroLogin.setText(R.string.erro_usuario_inexistente);
+            } else {
+                c.moveToPosition(0);
+                int idS = c.getColumnIndex("senha");
+
+                if (c.getString(idS).equals(senha)) {
+                    // Usuário existe e senha está correta
+                    ContentValues valores = new ContentValues();
+                    valores.put("temSessao", "sim");
+
+                    bd.atualizar("usuario", valores, "login = '" + username + "'");
+                    bd.fechar();
+
+                    c.close();
+                    Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    // Senha está incorreta
+                    erroLogin.setText(R.string.erro_senha_incorreta);
+                }
+            }
 
         }
     }
