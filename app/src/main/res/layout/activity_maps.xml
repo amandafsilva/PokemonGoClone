@@ -22,17 +22,19 @@
             android:id="@+id/profilePic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="45dp"
             android:src="@drawable/female_profile"
-            android:layout_marginTop="5dp"
-            android:layout_alignParentStart="true"
-            android:onClick="Perfil"/>
+            android:onClick="Perfil"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
 
         <ImageButton
             android:id="@+id/mapPic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/mapa_captura"
+            android:background="@null"
             android:layout_alignTop="@+id/profilePic"
             android:layout_centerHorizontal="true" />
 
@@ -41,20 +43,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/pokedex"
+            android:background="@null"
             android:layout_alignTop="@+id/mapPic"
-            android:layout_toEndOf="@+id/mapPic"
-            android:layout_marginStart="36dp" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="45dp" />
 
         <TextView
             android:id="@+id/textView_mapaUsuario"
-            android:layout_width="wrap_content"
+            android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:layout_marginTop="75dp"
-            android:layout_alignLeft="@+id/profilePic"
-            android:layout_marginLeft="15dp"
-            android:text="scmt07"/>
+            android:text="scmt07"
+            android:gravity="center"
+            android:layout_below="@+id/profilePic"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
