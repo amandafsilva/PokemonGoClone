@@ -12,18 +12,51 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="95dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="#FFFFFF"
+        android:id="@+id/relativeLayout">
 
-        <!-- Barra de navegação inferior -->
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/profilePic"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:itemBackground="@color/colorLight"
-            app:itemIconTint="@color/colorPrimaryDark"
-            app:itemTextColor="@color/colorPrimaryDark"
-            app:menu="@menu/barra_nav_maps" />
+            android:layout_marginStart="30dp"
+            android:src="@drawable/female_profile"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentStart="true"
+            android:onClick="Perfil"/>
+
+        <ImageButton
+            android:id="@+id/mapPic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mapa_captura"
+            android:layout_alignTop="@+id/profilePic"
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:id="@+id/pokedexPic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pokedex"
+            android:layout_alignTop="@+id/mapPic"
+            android:layout_toEndOf="@+id/mapPic"
+            android:layout_marginStart="36dp" />
+
+        <TextView
+            android:id="@+id/textView_mapaUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_marginTop="75dp"
+            android:layout_alignLeft="@+id/profilePic"
+            android:layout_marginLeft="15dp"
+            android:text="scmt07"/>
+
     </RelativeLayout>
+
 
 </RelativeLayout>

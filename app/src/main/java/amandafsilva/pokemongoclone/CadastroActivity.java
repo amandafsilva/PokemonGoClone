@@ -12,9 +12,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -143,7 +140,7 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     private boolean senhaValida(String senha) {
-        return senha.length() > 6;
+        return senha.length() >= 6;
     }
 
     @Override

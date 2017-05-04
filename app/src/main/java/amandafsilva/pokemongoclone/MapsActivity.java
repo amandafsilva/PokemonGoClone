@@ -1,11 +1,17 @@
 package amandafsilva.pokemongoclone;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,6 +24,7 @@ import com.google.android.gms.maps.model.*;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    public PokemonGoCloneDB bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,27 +36,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        // Manipula a barra inferior de navegação
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bd = new PokemonGoCloneDB();
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.acesso_perfil:
-                                Intent intent = new Intent(getApplicationContext(), PerfilActivity.class);
-                                startActivity(intent);
-                                finish();
-                            case R.id.acesso_maps:
-                                // do something here
-                            case R.id.acesso_pokedex:
-                                // do something here
-                        }
-                        return true;
-                    }
-                }
-        );
+        //Coloca o nome do usuario no abaixo do botao de perfil e imagem correspodente ao sexo
+        Cursor c = bd.buscar("usuario", new String[]{"login","sexo"}, "temSessao = 'sim'", "");
+        c.moveToPosition(0);
+        int idL = c.getColumnIndex("login");
+        int idS = c.getColumnIndex("sexo");
+        TextView nomeUsuario = (TextView) findViewById(R.id.textView_mapaUsuario);
+        nomeUsuario.setText(c.getString(idL));
+        ImageButton btn = (ImageButton) findViewById(R.id.profilePic);
+        if(c.getString(idS).equals("Masculino")) {
+            btn.setImageResource(R.drawable.male_profile);
+        }
+    }
+
+    public void Perfil(View view) {
+        Intent intent = new Intent(getApplicationContext(), PerfilActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

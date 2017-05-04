@@ -1,15 +1,21 @@
 package amandafsilva.pokemongoclone;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -40,14 +46,27 @@ public class SplashActivity extends AppCompatActivity {
         Thread timerThread = new Thread(){
             public void run(){
                 try {
-                    sleep(2000);
-                    if (c.getCount() == 0) {
-                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
-                        startActivity(intent);
+                    if(Conectado()){
+                        sleep(2000);
+                        if (c.getCount() == 0) {
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                    else {
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.post(new Runnable() {
+                            public void run() {
+                                Toast t = Toast.makeText(getApplicationContext(), "Sem conexão com a Internet.", Toast.LENGTH_LONG);
+                                t.show();
+                            }
+                        });
+                        sleep(4000);
                         finish();
                     }
                 } catch(InterruptedException e) {
@@ -57,6 +76,14 @@ public class SplashActivity extends AppCompatActivity {
         };
 
         timerThread.start();
+    }
+
+    public boolean Conectado() {
+        //Verifica a se o dispositivo esta conectado com a internet
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnected();
     }
 
     @Override

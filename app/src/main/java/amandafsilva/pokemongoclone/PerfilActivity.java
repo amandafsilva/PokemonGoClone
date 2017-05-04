@@ -32,6 +32,7 @@ public class PerfilActivity extends AppCompatActivity {
         c.moveToPosition(0);
         int idL = c.getColumnIndex("login");
         int idD = c.getColumnIndex("dtCadastro");
+        int idS = c.getColumnIndex("sexo");
         String aux = "login = '" + c.getString(idL) + "'";
 
         Cursor d = bd.buscar("pokemonusuario", new String[] {"idPokemon"}, aux, "");
@@ -46,6 +47,9 @@ public class PerfilActivity extends AppCompatActivity {
         nomeUsuario.setText(c.getString(idL));
         inicioAvent.setText(c.getString(idD));
         numCap.setText(numPokemon);
+        if(c.getString(idS).equals("Masculino")){
+            fotoP.setImageResource(R.drawable.male_grande);
+        }
 
         // Define a barra de tarefas
         Toolbar toolbar = (Toolbar) findViewById(R.id.pToolbar);
@@ -63,6 +67,8 @@ public class PerfilActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == android.R.id.home) {
+            Intent it = new Intent(getApplicationContext(), MapsActivity.class);
+            startActivity(it);
             finish();
             return true;
         }
