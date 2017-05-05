@@ -2,17 +2,16 @@ package amandafsilva.pokemongoclone;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -21,9 +20,17 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
 
     private GoogleMap mMap;
+    public LocationManager lm;
+    public Criteria criteria;
+    public String provider;
+    public int TEMPO_REQUISICAO_LATLONG = 5000;
+    public int DISTANCIA_MIN_METROS = 0;
+
+    BitmapDescriptor marcador;
+
     public PokemonGoCloneDB bd;
 
     @Override
@@ -36,7 +43,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
         bd = new PokemonGoCloneDB();
+
+        // Cria o marcador feminino
+        marcador = BitmapDescriptorFactory.fromResource(R.drawable.female);
 
         //Coloca o nome do usuario no abaixo do botao de perfil e imagem correspodente ao sexo
         Cursor c = bd.buscar("usuario", new String[]{"login","sexo"}, "temSessao = 'sim'", "");
@@ -48,6 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ImageButton btn = (ImageButton) findViewById(R.id.profilePic);
         if(c.getString(idS).equals("Masculino")) {
             btn.setImageResource(R.drawable.male_profile);
+            marcador = BitmapDescriptorFactory.fromResource(R.drawable.male);
         }
     }
 
@@ -62,11 +74,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-33.867, 151.206);
 
         //map.setMyLocationEnabled(true);
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 18));
 
-        map.addMarker(new MarkerOptions()
-                .title("Sydney")
-                .snippet("The most populous city in Australia.")
-                .position(sydney));
+        MarkerOptions markerOptions = new MarkerOptions().position(sydney)
+                .icon(marcador);
+
+        map.addMarker(markerOptions);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
     }
 }
