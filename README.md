@@ -1,2 +1,3 @@
 # PokemonGoClone
-Projeto para a disciplina INF 311 - Programação Para Dispositivos Móveis.
+Project for the graduation course Mobile App Programming.
+
